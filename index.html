@@ -301,10 +301,16 @@
     
     .card-wrap {
       margin-top: 5vh;
+      z-index: 20;
     }
     
     .btn-row {
       margin-top: 10vh;
+      z-index: 20;
+    }
+    
+    .floral-field {
+      z-index: 15;
     }
   }
 
@@ -1299,6 +1305,19 @@
   <div class="flowers-row">🌷 🌸 🎂 🌸 🌷 🌸 🎂 🌸 🌷</div>
 </div>
 
+<!-- PAGE 4: VIDEO MESSAGE -->
+<div id="page-video" class="page">
+  <div class="video-container">
+    <video id="special-video" autoplay muted loop playsinline>
+      <source src="gift_special_video.mp4" type="video/mp4">
+    </video>
+    <div class="video-text">
+      <h2>🎬 Special Birthday Message! 🎬</h2>
+      <p>A heartwarming message just for you! 💝</p>
+    </div>
+  </div>
+</div>
+
 <script>
 const audio = document.getElementById('bg-music');
 const btn   = document.getElementById('music-toggle');
@@ -1382,7 +1401,7 @@ function launchConfetti(count) {
 
 const giftData = {
   panipuri: {
-    img: 'gift_panipuri_jpg.webp',
+    img: 'gift_panipuri.jpg',
     emoji: '🫙',
     title: 'Pani Puri Coupon 🫙',
     msg: 'Kyunki kuch cheezein sirf tumhare jaisi hoti hain — chatak, teekhi, aur ekdum perfect! 😄',
@@ -1694,8 +1713,14 @@ function createFlowerSnow() {
   }
 }
 
-// Start flower snow effect when page loads
-window.addEventListener('load', createFlowerSnow);
+// Start flower snow effect only on first page
+function startFlowerSnowOnFirstPage() {
+  if (document.getElementById('page-home').classList.contains('active')) {
+    createFlowerSnow();
+  }
+}
+
+window.addEventListener('load', startFlowerSnowOnFirstPage);
 </script>
 
 <!-- ── GIFT PREVIEW (layer 1) ── -->
