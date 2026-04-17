@@ -37,8 +37,19 @@
   /* Main scene */
   .scene {
     position: relative;
-    width: 400px; height: 700px;
+    width: 90vw; height: 80vh;
+    max-width: 400px; max-height: 700px;
     z-index: 1;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 480px) {
+    .scene {
+      width: 95vw;
+      height: 85vh;
+      max-width: 350px;
+      max-height: 600px;
+    }
   }
 
   /* Gungun photo - center background */
@@ -86,6 +97,32 @@
     font-size: 13px;
     font-weight: 800;
     color: #fff;
+  }
+
+  /* Mobile responsive for cats */
+  @media (max-width: 480px) {
+    .cat {
+      width: 25vw; height: 25vw;
+      max-width: 90px; max-height: 90px;
+    }
+    .cheenu { 
+      left: 3vw; 
+      bottom: 12vh; 
+      width: 15vw; 
+      max-width: 45px;
+      max-height: 45px;
+    }
+    .lalo   { 
+      right: 3vw; 
+      bottom: 12vh; 
+      width: 15vw; 
+      max-width: 45px;
+      max-height: 45px;
+    }
+    .cat-name {
+      font-size: 11px;
+    }
+  }
     background: #7c3aed;
     border-radius: 20px;
     padding: 2px 10px;
