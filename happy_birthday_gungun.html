@@ -11,15 +11,25 @@
   body {
     background: #1a0533;
     font-family: 'Nunito', sans-serif;
-    width: 100vw; height: 100vh;
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
   }
 
   /* Confetti particles */
   .confetti-wrap {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
   }
   .dot {
     position: absolute;
@@ -37,19 +47,10 @@
   /* Main scene */
   .scene {
     position: relative;
-    width: 90vw; height: 80vh;
-    max-width: 400px; max-height: 700px;
+    width: min(100%, 400px);
+    aspect-ratio: 400 / 700;
+    max-width: 100%;
     z-index: 1;
-  }
-
-  /* Mobile responsive */
-  @media (max-width: 480px) {
-    .scene {
-      width: 95vw;
-      height: 85vh;
-      max-width: 350px;
-      max-height: 600px;
-    }
   }
 
   /* Gungun photo - center background */
@@ -97,44 +98,6 @@
     font-size: 13px;
     font-weight: 800;
     color: #fff;
-  }
-
-  /* Mobile responsive for cats */
-  @media (max-width: 480px) {
-    .cat {
-      width: 25vw; height: 25vw;
-      max-width: 90px; max-height: 90px;
-    }
-    .cheenu { 
-      left: 3vw; 
-      bottom: 12vh; 
-      width: 15vw; 
-      max-width: 45px;
-      max-height: 45px;
-    }
-    .lalo   { 
-      right: 3vw; 
-      bottom: 12vh; 
-      width: 15vw; 
-      max-width: 45px;
-      max-height: 45px;
-    }
-    .cat-name {
-      font-size: 11px;
-    }
-    
-    .bubble {
-      max-width: 80px;
-      font-size: 9px;
-      padding: 4px 8px;
-      z-index: 10;
-    }
-    
-    .cheenu-name, .lalo-name {
-      font-size: 8px;
-      bottom: 12vh;
-    }
-  }
     background: #7c3aed;
     border-radius: 20px;
     padding: 2px 10px;
