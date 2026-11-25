@@ -33,12 +33,22 @@
 
   #page-home {
     background: #1a1a1a;
-    padding: 16px 16px 40px;
+    padding: calc(12px + env(safe-area-inset-top)) 16px calc(12px + env(safe-area-inset-bottom));
     min-height: 100vh;
     min-height: 100dvh;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
+  }
+
+  /* Full-screen mobile layout: fills the whole device page */
+  #page-home.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    height: 100dvh;
   }
 
   /* Photo Collage Background */
@@ -300,12 +310,12 @@
     }
     
     .card-wrap {
-      margin-top: 5vh;
+      margin-top: 0;
       z-index: 20;
     }
     
     .btn-row {
-      margin-top: 10vh;
+      margin-top: 0;
       z-index: 20;
     }
     
@@ -336,11 +346,11 @@
     }
     
     .card-wrap {
-      margin-top: 2vh;
+      margin-top: 0;
     }
     
     .btn-row {
-      margin-top: 5vh;
+      margin-top: 0;
     }
     
     .floral-field {
@@ -393,7 +403,7 @@
   .card-wrap {
     perspective: 1000px;
     width: min(420px, 96vw);
-    margin: 10px auto 0;
+    margin: 0 auto;
     position: relative;
     z-index: 10;
   }
@@ -418,7 +428,7 @@
     border: 2px solid rgba(221,160,221,0.5);
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    padding: 24px 20px; gap: 8px;
+    padding: clamp(12px, 3vh, 24px) clamp(14px, 4vw, 20px); gap: clamp(4px, 1vh, 8px);
     overflow: hidden;
   }
 
@@ -464,11 +474,11 @@
     color: var(--text-secondary);
     text-align: center; font-style: italic; max-width: 80%;
   }
-  .card-flowers { font-size: 1.4rem; letter-spacing: 6px; margin-top: 4px; }
+  .card-flowers { font-size: clamp(1rem, 4vw, 1.4rem); letter-spacing: 6px; margin-top: 4px; }
 
   .btn-row {
     display: flex; gap: 16px; justify-content: center;
-    flex-wrap: nowrap; margin: 24px auto 0;
+    flex-wrap: nowrap; margin: 0 auto;
     width: min(420px, 96vw);
     animation: slideUp 0.8s ease-out 1.6s both;
     position: relative;
@@ -482,7 +492,7 @@
 
   .action-btn {
     flex: 1;
-    min-height: 120px;
+    min-height: clamp(84px, 15vh, 120px);
     background: linear-gradient(135deg, var(--light-lavender), #C080D0);
     border: 2px solid rgba(255,255,255,0.7);
     border-radius: 20px; cursor: pointer;
@@ -508,12 +518,26 @@
 
   .tulip-border {
     display: flex; justify-content: center;
-    gap: 10px; padding: 14px 0 0;
-    font-size: 1.6rem; flex-wrap: wrap;
+    gap: 8px; padding: 0;
+    font-size: clamp(1.1rem, 4vw, 1.6rem); flex-wrap: wrap;
     animation: fadeIn 1s ease 2s both;
   }
 
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* Short screens (small phones): keep the whole page in one view */
+  @media (max-height: 700px) {
+    .card-front { padding: 12px 14px; gap: 5px; }
+    .card-emoji { font-size: 1.55rem; }
+    .card-title { font-size: 1.25rem; }
+    .card-name  { font-size: 1.65rem; }
+    .card-msg   { font-size: 0.8rem; }
+    .card-flowers { font-size: 1.05rem; }
+    .action-btn { min-height: 84px; padding: 10px 8px; }
+    .btn-icon { font-size: 1.75rem; }
+    .tulip-border { font-size: 1.15rem; }
+    .floral-field { height: 54px !important; }
+  }
 
   /* GIFTS */
   #page-gifts {
@@ -1177,7 +1201,7 @@
     <img src="media/photo4.jpg" class="collage-photo" alt="Shristi photo 32">
   </div>
   
-  <div class="floral-field" style="height:110px;margin-bottom:0;">
+  <div class="floral-field" style="height:clamp(56px,10vh,110px);margin-bottom:0;">
     <div class="flower" style="left:3%;top:10px;width:52px;height:72px;--r:-8deg;animation-delay:0s;">
       <svg viewBox="0 0 52 72" xmlns="http://www.w3.org/2000/svg">
         <line x1="26" y1="72" x2="26" y2="38" stroke="#5D9A6B" stroke-width="3.5"/>
@@ -1276,7 +1300,7 @@
     <div class="gift-card" style="--wi:0"  onclick="previewGift('flowers')"   ><div class="gift-inner"><div class="gift-face gift-front"><div class="gift-icon">🎁</div><div class="gift-label">Gift</div><div class="gift-hint">tap to open</div></div><div class="gift-face gift-back"><div class="gift-back-emoji">🎁</div><div class="gift-back-title">Opening...</div><div class="gift-back-msg">💜</div></div></div></div>
     <div class="gift-card" style="--wi:1"  onclick="previewGift('chocolate')" ><div class="gift-inner"><div class="gift-face gift-front"><div class="gift-icon">🎁</div><div class="gift-label">Gift</div><div class="gift-hint">tap to open</div></div><div class="gift-face gift-back"><div class="gift-back-emoji">🎁</div><div class="gift-back-title">Opening...</div><div class="gift-back-msg">💜</div></div></div></div>
     <div class="gift-card" style="--wi:2"  onclick="previewGift('rasmalai')"  ><div class="gift-inner"><div class="gift-face gift-front"><div class="gift-icon">🎁</div><div class="gift-label">Gift</div><div class="gift-hint">tap to open</div></div><div class="gift-face gift-back"><div class="gift-back-emoji">🎁</div><div class="gift-back-title">Opening...</div><div class="gift-back-msg">💜</div></div></div></div>
-    <div class="gift-card" style="--wi:3"  onclick="previewGift('bts')"       ><div class="gift-inner"><div class="gift-face gift-front"><div class="gift-icon">🎁</div><div class="gift-label">Gift</div><div class="gift-hint">tap to open</div></div><div class="gift-face gift-back"><div class="gift-back-emoji">🎁</div><div class="gift-back-title">Opening...</div><div class="gift-back-msg">💜</div></div></div></div>
+    <div class="gift-card" style="--wi:3"  onclick="previewGift('coffee')"       ><div class="gift-inner"><div class="gift-face gift-front"><div class="gift-icon">🎁</div><div class="gift-label">Gift</div><div class="gift-hint">tap to open</div></div><div class="gift-face gift-back"><div class="gift-back-emoji">🎁</div><div class="gift-back-title">Opening...</div><div class="gift-back-msg">💜</div></div></div></div>
     <div class="gift-card" style="--wi:4"  onclick="previewGift('video')"     ><div class="gift-inner"><div class="gift-face gift-front"><div class="gift-icon">🎁</div><div class="gift-label">Gift</div><div class="gift-hint">tap to open</div></div><div class="gift-face gift-back"><div class="gift-back-emoji">🎁</div><div class="gift-back-title">Opening...</div><div class="gift-back-msg">💜</div></div></div></div>
     <div class="gift-card" style="--wi:5"  onclick="previewGift('panipuri')"  ><div class="gift-inner"><div class="gift-face gift-front"><div class="gift-icon">🎁</div><div class="gift-label">Gift</div><div class="gift-hint">tap to open</div></div><div class="gift-face gift-back"><div class="gift-back-emoji">🎁</div><div class="gift-back-title">Opening...</div><div class="gift-back-msg">💜</div></div></div></div>
 
@@ -1292,10 +1316,16 @@
   <div class="cake-video-wrap">
     <div class="candle-ring">🕯️✨🕯️✨🕯️✨🕯️✨</div>
     <div class="video-container">
-      <img src="media/photo4.jpg" alt="Shristi cutting the birthday cake"
+      <video id="cake-video" controls playsinline
+        onplay="pauseMusicForVideo()"
+        onpause="resumeMusicAfterVideo()"
+        onended="resumeMusicAfterVideo()"
+        poster="media/photo4.jpg"
         style="width:100%;border-radius:16px;display:block;">
+        <source src="../cake.mp4" type="video/mp4">
+      </video>
     </div>
-    <div class="cake-caption">🎉 Make a wish & blow the candles! 🎉</div>
+    <div class="cake-caption">🎉 Make a wish before you press play! 🎉</div>
   </div>
   <div class="flowers-row">🌷 🌸 🎂 🌸 🌷 🌸 🎂 🌸 🌷</div>
 </div>
@@ -1303,7 +1333,9 @@
 <!-- PAGE 4: VIDEO MESSAGE -->
 <div id="page-video" class="page">
   <div class="video-container">
-    <img src="media/photo3.png" alt="A special memory with Shristi" style="width:100%;border-radius:16px;display:block;">
+    <video id="special-video" autoplay muted loop playsinline poster="media/photo3.png">
+      <source src="../special.mp4" type="video/mp4">
+    </video>
     <div class="video-text">
       <h2>🎬 Special Birthday Message! 🎬</h2>
       <p>A heartwarming message just for you! 💝</p>
@@ -1449,22 +1481,30 @@ const giftData = {
     msg: 'Tumhare liye phool — kyunki tum khud ek garden ho, beautiful aur full of life. 🌸 💜'
   },
 
-  bts: {
-    img: '',
-    emoji: '💜',
-    title: 'Special Message from Cheenu & Lalo 💜',
-    msg: 'A special birthday message from your furry friends! 🐾',
-    html: 'happy_birthday_shristi.html',
-    type: 'html'
+  coffee: {
+    img: '../gift_coffee.jpg',
+    emoji: '☕',
+    title: 'Coffee Coupon ☕',
+    msg: 'Ek cozy coffee treat, tumhare naam — kyunki birthday girl ko caffeine ka poora haq hai! ☕💜',
+    coupon: 'SHRISTICOFFEE',
+    expiry: '26th November 2027 (coffee ki tarah strong guarantee — kabhi expire hone ka plan nahi)',
+    item: 'ek cup perfectly brewed coffee (cappuccino, latte, cold coffee — bilkul tumhari marzi!)',
+    funny_tnc: [
+      'Extra shot of espresso maangna allowed hai — birthday girl ke liye kuch bhi.',
+      'Coffee ke saath cake share karna optional hai, coffee share karna mushkil.',
+      'Cold coffee ya hot coffee — dono allowed. Judgment free zone.',
+      'Is coupon ke saath lambi baatein included hain — terms and conditions apply.',
+      'Coupon ki validity coffee ki tarah strong hai — expire hone ka koi iraada nahi.',
+    ]
   },
 
   video: {
     img: '',
     emoji: '🎬',
-    title: 'Memory Reel 🎬',
-    msg: 'Thodi yaadein, thodi muskaan — a little reel of memories, just for you! 💜',
-    html: 'memory_reel.html',
-    type: 'html'
+    title: 'A Special Video 🎬',
+    msg: 'A heartwarming message just for you! 💝',
+    video: '../special.mp4',
+    videoType: 'local'
   }
 };
 
